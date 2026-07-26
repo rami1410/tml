@@ -13,77 +13,186 @@
             padding: 0;
             text-align: center;
         }
-        header {
+
+        /* --- עיצוב התפריט השמרני הנגלל --- */
+        #main-nav {
+            position: fixed;
+            top: -100px; /* מוסתר כברירת מחדל */
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 2px solid #eaeaea;
+            transition: top 0.4s ease-in-out; /* אנימציית החלקה רכה */
+            z-index: 1000;
+        }
+        
+        /* המחלקה שתתווסף בעת גלילה כדי להציג את התפריט */
+        #main-nav.show-nav {
+            top: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .cta-btn {
+            background-color: #e67e22; /* צבע כתום קלאסי ושמרני */
+            color: white !important;
+            padding: 8px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- עיצוב תוכן דף הבית (הירו וגריד) --- */
+        header.hero {
             background-color: #2c3e50;
             color: white;
-            padding: 50px 20px;
+            padding: 120px 20px 80px; /* ריווח מוגדל כדי שהתפריט לא יסתיר */
         }
-        h1 { margin-top: 0; font-size: 2.5rem; }
-        .hero-text { font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px; color: #ecf0f1; }
+        .hero h1 { margin-top: 0; font-size: 2.8rem; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #ecf0f1; }
         
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             max-width: 1000px;
-            margin: -30px auto 40px;
+            margin: -40px auto 40px;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
         .card {
             background: white;
             padding: 30px 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             text-decoration: none;
             color: #2c3e50;
             transition: transform 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
         .card h3 { margin: 0 0 10px; color: #2980b9; }
         .card p { margin: 0; font-size: 0.95rem; color: #666; }
         
-        /* צבעים ספציפיים לכרטיסיות */
         .card.academy { border-bottom: 4px solid #27ae60; }
         .card.store { border-bottom: 4px solid #e74c3c; }
         .card.services { border-bottom: 4px solid #f39c12; }
         .card.impact { border-bottom: 4px solid #8e44ad; }
+        
+        /* תוכן דמה כדי שיהיה לאן לגלול */
+        .dummy-content {
+            height: 1000px;
+            padding: 50px;
+            color: #7f8c8d;
+        }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- התפריט העליון הנסתר -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <!-- הלוגו שהוספנו -->
+                <a href="index.html">
+                    <img src="https://i.postimg.cc/mrzcZWpL/lwgw-hwtm-mwnps.gif" alt="לוגו חותם חיים">
+                </a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="academy.html">אקדמיה והכשרות</a></li>
+                <li><a href="store.html">חנות הציוד</a></li>
+                <li><a href="#">שירותים</a></li>
+                <li><a href="#">הישגים</a></li>
+                <li><a href="#">שאלות נפוצות</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- כפתור הנעה לפעולה ברוח התמונה -->
+                <a href="#" class="cta-btn">הצטרפו היום</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
         <h1>חותם חיים</h1>
-        <p class="hero-text">החברה הטכנופדגוגית הגדולה בישראל. מעל 30 נציגויות מכל העולם ושותפות דרך עם 1,600 בתי ספר ברחבי הארץ.</p>
+        <p>החברה הטכנופדגוגית הגדולה בישראל. מעל 30 נציגויות מכל העולם ושותפות דרך עם 1,600 בתי ספר ברחבי הארץ.</p>
     </header>
 
     <div class="nav-grid">
-        <!-- קישור לעמוד האקדמיה שכבר יצרנו -->
         <a href="academy.html" class="card academy">
             <h3>אקדמיה והכשרות 🎓</h3>
             <p>פירמידת הקורסים שלנו, פיתוח כישורים, מחקר, פרויקטים והכשרות מורים.</p>
         </a>
-
-        <!-- קישור לעמוד החנות (שניצור בהמשך) -->
         <a href="store.html" class="card store">
             <h3>חנות ציוד טכנופדגוגי 🛒</h3>
             <p>ציוד מתקדם מכל העולם: סרטונים, יתרונות ומחירים לכל מוצר.</p>
         </a>
-
-        <!-- קישור לעמוד השירותים (שניצור בהמשך) -->
         <a href="#" class="card services">
             <h3>השירותים שלנו 🛠️</h3>
             <p>6 תחומי הליבה שבהם חותם חיים מובילה את העשייה החינוכית.</p>
         </a>
-
-        <!-- קישור לעמוד ההישגים (שניצור בהמשך) -->
         <a href="#" class="card impact">
             <h3>20 הישגים גדולים 🏆</h3>
             <p>הדרך שעברנו, ההשפעה שלנו בשטח ונקודות ציון משמעותיות.</p>
         </a>
     </div>
+
+    <div class="dummy-content">
+        <p>גלול למטה כדי לראות את התפריט מופיע!</p>
+        <p>↓</p>
+    </div>
+
+    <!-- סקריפט להפעלת התפריט בעת גלילה -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            // אם המשתמש גלל יותר מ-150 פיקסלים למטה, הוסף את המחלקה שמציגה את התפריט
+            if (window.scrollY > 150) {
+                nav.classList.add('show-nav');
+            } else {
+                nav.classList.remove('show-nav');
+            }
+        });
+    </script>
 
 </body>
 </html>
