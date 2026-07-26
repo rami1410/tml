@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אקדמיה והכשרות | חותם חיים</title>
+    <style>
+        /* הגדרות עיצוב כלליות */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* עיצוב פירמידת הקורסים */
+        .pyramid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 50px 0;
+        }
+        .layer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .layer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .layer-top {
+            width: 40%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        .layer-middle {
+            width: 70%;
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+        }
+        .layer-base {
+            width: 100%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        /* עיצוב אזור הכשרות מורים */
+        .teacher-training {
+            margin-top: 60px;
+            padding: 30px;
+            background-color: #eaf2f8;
+            border-right: 6px solid #3498db;
+            border-radius: 8px;
+        }
+        .teacher-training h3 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .training-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .training-list li {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>האקדמיה של חותם חיים</h1>
+        <p>מעצבים את דור העתיד דרך פיתוח כישורים, מחקר ועשייה</p>
+    </header>
+
+    <div class="container">
+        <!-- אזור הפירמידה -->
+        <h2>פירמידת ההכשרות שלנו</h2>
+        <p style="text-align: center; color: #7f8c8d;">לחץ על כל שלב בפירמידה כדי לגלות את הקורסים שלנו (יוביל לעמודי הקורסים)</p>
+        
+        <div class="pyramid-container">
+            <div class="layer layer-top" onclick="alert('כאן יופיעו קורסי הפרויקטים')">
+                קודקוד: פרויקטים ויישום
+            </div>
+            <div class="layer layer-middle" onclick="alert('כאן יופיעו קורסי המחקר')">
+                קומה 2: מחקר והעמקה
+            </div>
+            <div class="layer layer-base" onclick="alert('כאן יופיעו קורסי הכישורים')">
+                בסיס: קורסים מפתחי כישורים
+            </div>
+        </div>
+
+        <!-- אזור הכשרות מורים -->
+        <div class="teacher-training">
+            <h3>הכשרות מורים וצוותי חינוך</h3>
+            <p>בחותם חיים, אנו מאמינים שהשינוי מתחיל במורים. בנינו תוכניות הכשרה טכנופדגוגיות שנועדו לתת לצוותי ההוראה את הכלים הטובים והמתקדמים ביותר:</p>
+            <ul class="training-list">
+                <li><strong>✅ שילוב טכנופדגוגיה בכיתה:</strong> כלים מעשיים לשילוב ציוד חדשני בלמידה.</li>
+                <li><strong>✅ למידה מבוססת פרויקטים (PBL):</strong> איך להוביל תלמידים לחקר ועשייה.</li>
+                <li><strong>✅ פיתוח כישורי המאה ה-21:</strong> הקניית מיומנויות של יצירתיות, עבודת צוות וחשיבה ביקורתית.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
