@@ -11,10 +11,9 @@
             color: #333;
             margin: 0;
             padding: 0;
-            padding-bottom: 60px; /* מקום לכפתור הניהול למטה */
+            padding-bottom: 60px;
         }
         
-        /* --- כותרת משופרת עם תיבת טקסט מובלטת --- */
         header {
             background-image: url('https://i.postimg.cc/xC8qKzzv/Screenshot-2026-07-26-225037.png');
             background-size: cover;
@@ -25,8 +24,8 @@
         }
         
         .header-content {
-            background-color: rgba(0, 0, 0, 0.55); /* רקע כהה חצי שקוף */
-            backdrop-filter: blur(5px); /* אפקט טשטוש יוקרתי למה שמאחורי התיבה */
+            background-color: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
             display: inline-block;
             padding: 20px 40px;
             border-radius: 12px;
@@ -37,39 +36,21 @@
         .header-content h1 { margin: 0 0 10px 0; font-size: 3rem; font-weight: 800;}
         .header-content p { margin: 0; font-size: 1.3rem; font-weight: 600;}
         
-        /* --- סרגל קטגוריות --- */
         .category-nav {
-            background: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            background: white; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;
         }
         .filter-btn {
-            background: #ecf0f1;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #2c3e50;
-            transition: all 0.3s ease;
+            background: #ecf0f1; border: none; padding: 8px 16px; border-radius: 20px;
+            cursor: pointer; font-weight: 600; color: #2c3e50; transition: all 0.3s ease;
         }
         .filter-btn:hover { background: #d5dbdb; }
         .filter-btn.active { background: #27ae60; color: white; }
         
         .back-btn {
-            display: inline-block;
-            margin: 0 20px 20px;
-            padding: 10px 20px;
-            background-color: #2c3e50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            display: inline-block; margin: 0 20px 20px; padding: 10px 20px;
+            background-color: #2c3e50; color: white; text-decoration: none;
+            border-radius: 5px; transition: 0.3s;
         }
         .back-btn:hover { background-color: #1a252f; }
 
@@ -80,8 +61,10 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            align-items: stretch; /* מוודא שכל הכרטיסיות באותה שורה באותו גובה */
         }
 
+        /* --- פתרון באג 1: אחידות בגובה הכרטיסיות --- */
         .product-card {
             background: white;
             border-radius: 12px;
@@ -89,8 +72,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* מסדר את התוכן מלמעלה למטה */
             position: relative;
+            height: 100%;
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         
@@ -103,40 +87,49 @@
             justify-content: center;
             border-bottom: 3px solid #27ae60;
             overflow: hidden;
+            position: relative;
         }
-
         .product-media img, .product-media iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
 
-        .product-content { padding: 20px; flex-grow: 1; }
+        .product-content { 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            flex-grow: 1; /* אומר לתוכן לתפוס את כל המקום הפנוי */
+        }
+        
         .product-title { margin: 0 0 10px; color: #2c3e50; font-size: 1.4rem; outline: none; }
         .product-price { font-size: 1.5rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; outline: none; } 
         
-        .advantages-list { padding-right: 20px; margin-bottom: 20px; color: #555; font-size: 0.95rem; outline: none; }
+        .advantages-list { 
+            padding-right: 20px; 
+            margin-bottom: 20px; 
+            color: #555; 
+            font-size: 0.95rem; 
+            outline: none;
+            flex-grow: 1; /* זה מה שדוחף את כפתור הקנייה תמיד למטה! */
+        }
         .advantages-list li { margin-bottom: 8px; }
 
-        .related-products { background-color: #eafaf1; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; border-right: 4px solid #27ae60; outline: none; }
+        .related-products { 
+            background-color: #eafaf1; padding: 15px; border-radius: 8px; 
+            margin-bottom: 20px; font-size: 0.85rem; border-right: 4px solid #27ae60; outline: none; 
+        }
         .related-products strong { display: block; margin-bottom: 5px; color: #27ae60; }
 
         .buy-btn {
             display: block; text-align: center; background-color: #27ae60; color: white; padding: 12px;
             text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s;
             cursor: pointer; border: none; width: 100%; box-sizing: border-box;
+            margin-top: auto; /* מוודא שהכפתור תמיד בתחתית */
         }
         .buy-btn:hover { background-color: #219a52; }
 
         /* --- ממשק מנהל --- */
         .admin-login-trigger {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #34495e;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 1500;
+            position: fixed; bottom: 20px; left: 20px; background-color: #34495e;
+            color: white; padding: 10px 15px; border-radius: 30px; text-decoration: none;
+            font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1500;
         }
         
         #login-modal {
@@ -158,6 +151,10 @@
         .admin-btn.delete { background: #e74c3c; }
         .admin-btn.duplicate { background: #3498db; }
         
+        /* כפתור עריכת מדיה חדש */
+        .admin-btn.media-edit { background: #9b59b6; position: absolute; top: 10px; right: 10px; z-index: 20; display: none; }
+        body.is-admin .admin-btn.media-edit { display: block; }
+
         .admin-top-bar {
             display: none; background: #34495e; color: white; padding: 15px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 1000;
         }
@@ -167,7 +164,7 @@
 <body>
 
     <div class="admin-top-bar">
-        מצב עריכת מנהל פעיל 🛠️ | לחץ על טקסטים כדי לערוך אותם (השינויים זמניים לדפדפן זה)
+        מצב עריכת מנהל פעיל 🛠️ | לחץ על טקסטים או על "ערוך מדיה" כדי לעדכן את התצוגה
         <button onclick="logoutAdmin()" style="margin-right:20px; background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">התנתק</button>
     </div>
 
@@ -178,11 +175,9 @@
         </div>
     </header>
 
-    <!-- סרגל קטגוריות ותת-קטגוריות -->
     <div class="category-nav">
         <button class="filter-btn active" onclick="filterProducts('all')">הכל</button>
-        <button class="filter-btn" onclick="filterProducts('robotics')">🤖 רובוטיקה (ראשי)</button>
-        <button class="filter-btn" onclick="filterProducts('advanced-robotics')">⚙️ רובוטיקה מתקדמת (תת-קטגוריה)</button>
+        <button class="filter-btn" onclick="filterProducts('robotics')">🤖 רובוטיקה</button>
         <button class="filter-btn" onclick="filterProducts('vr')">👓 מציאות מדומה (VR)</button>
     </div>
 
@@ -190,68 +185,57 @@
 
     <div class="products-grid" id="store-grid">
         
-        <!-- מוצר 1: שייך גם לרובוטיקה וגם לרובוטיקה מתקדמת -->
-        <!-- שימו לב למאפיין data-category -->
-        <div class="product-card" data-category="robotics advanced-robotics">
+        <!-- מוצר 1 -->
+        <div class="product-card" data-category="robotics">
             <div class="admin-controls admin-only">
                 <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
                 <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
             </div>
             <div class="product-media">
+                <button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button>
                 <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="תמונת מוצר">
             </div>
             <div class="product-content">
                 <h3 class="product-title editable">ערכת רובוטיקה מודולרית מתקדמת</h3>
                 <div class="product-price editable">₪1,450</div>
-                
-                <strong>למה זה כדאי?</strong>
                 <ul class="advantages-list editable">
                     <li>פיתוח חשיבה חישובית ופתרון בעיות</li>
                     <li>מותאם ללמידה מבוססת פרויקטים (PBL)</li>
                     <li>כולל חיישנים חכמים ומנועים מדויקים</li>
                 </ul>
-
                 <div class="related-products editable">
-                    <strong>מוצרים משלימים:</strong>
-                    חיישן צבע נוסף, משטח תחרות רובוטיקה.
+                    <strong>מוצרים משלימים:</strong> חיישן צבע נוסף, משטח תחרות רובוטיקה.
                 </div>
-
                 <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
 
-        <!-- מוצר 2: שייך רק למציאות מדומה -->
-        <!-- שימו לב למאפיין data-category -->
+        <!-- מוצר 2 -->
         <div class="product-card" data-category="vr">
             <div class="admin-controls admin-only">
                 <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
                 <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
             </div>
             <div class="product-media">
+                <button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button>
                 <iframe src="https://www.youtube.com/embed/41R_lC6m2Gk?si=1OEDL-0bN2K8M9zF" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="product-content">
                 <h3 class="product-title editable">משקפי מציאות מדומה (VR) לחינוך</h3>
                 <div class="product-price editable">₪890</div>
-                
-                <strong>למה זה כדאי?</strong>
                 <ul class="advantages-list editable">
                     <li>סיורים וירטואליים במקומות היסטוריים</li>
                     <li>המחשה חזותית של תהליכים במדעים</li>
                 </ul>
-
                 <div class="related-products editable">
-                    <strong>מוצרים משלימים:</strong>
-                    ארון טעינה כיתתי, רישיון לתכני VR.
+                    <strong>מוצרים משלימים:</strong> ארון טעינה כיתתי, רישיון לתכני VR.
                 </div>
-
                 <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
 
     </div>
 
-    <!-- כפתור הניהול עכשיו מקובע בצד שמאל למטה -->
     <a href="#" class="admin-login-trigger" onclick="openLogin(event)">🔒 ניהול</a>
 
     <div id="overlay" onclick="closeLogin()"></div>
@@ -263,14 +247,11 @@
     </div>
 
     <script>
-        // פונקציית סינון קטגוריות
         function filterProducts(category) {
-            // עדכון כפתור פעיל
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
-            // סינון המוצרים
             const products = document.querySelectorAll('.product-card');
             products.forEach(product => {
                 const productCategories = product.getAttribute('data-category');
@@ -297,7 +278,6 @@
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
             
-            // עדכנו את פרטי ההתחברות לפי בקשתך
             if(user === 'rami' && pass === '1410') {
                 closeLogin();
                 enableAdminMode();
@@ -321,7 +301,7 @@
         }
 
         function deleteProduct(btnElement) {
-            if(confirm('האם אתה בטוח שברצונך למחוק מוצר זה? (מחיקה מהתצוגה הנוכחית)')) {
+            if(confirm('האם אתה בטוח שברצונך למחוק מוצר זה?')) {
                 btnElement.closest('.product-card').remove();
             }
         }
@@ -331,6 +311,26 @@
             const cardToCopy = btnElement.closest('.product-card');
             const clonedCard = cardToCopy.cloneNode(true);
             grid.appendChild(clonedCard);
+        }
+
+        /* פתרון באג 2: פונקציה חדשה לעריכת תמונה או סרטון דרך הממשק */
+        function editMedia(btnElement) {
+            const mediaContainer = btnElement.closest('.product-media');
+            const newUrl = prompt("הדבק כאן קישור לתמונה (URL) או קוד הטמעה של יוטיוב (Embed):", "");
+            
+            if (newUrl && newUrl.trim() !== "") {
+                // בדיקה אם זה קוד הטמעה של יוטיוב או לינק רגיל לתמונה
+                if (newUrl.includes('youtube.com') || newUrl.includes('youtu.be') || newUrl.includes('<iframe')) {
+                    let iframeSrc = newUrl;
+                    if(newUrl.includes('<iframe')) {
+                        const match = newUrl.match(/src="([^"]+)"/);
+                        if(match) iframeSrc = match[1];
+                    }
+                    mediaContainer.innerHTML = `<button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button><iframe src="${iframeSrc}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+                } else {
+                    mediaContainer.innerHTML = `<button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button><img src="${newUrl}" alt="תמונת מוצר">`;
+                }
+            }
         }
     </script>
 
