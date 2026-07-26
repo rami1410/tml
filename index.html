@@ -17,17 +17,16 @@
         /* --- עיצוב התפריט השמרני הנגלל --- */
         #main-nav {
             position: fixed;
-            top: -100px; /* מוסתר כברירת מחדל */
+            top: -100px;
             left: 0;
             width: 100%;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-bottom: 2px solid #eaeaea;
-            transition: top 0.4s ease-in-out; /* אנימציית החלקה רכה */
+            transition: top 0.4s ease-in-out;
             z-index: 1000;
         }
         
-        /* המחלקה שתתווסף בעת גלילה כדי להציג את התפריט */
         #main-nav.show-nav {
             top: 0;
         }
@@ -67,7 +66,7 @@
         }
 
         .cta-btn {
-            background-color: #e67e22; /* צבע כתום קלאסי ושמרני */
+            background-color: #e67e22;
             color: white !important;
             padding: 8px 24px;
             border-radius: 4px;
@@ -80,21 +79,40 @@
             background-color: #d35400;
         }
 
-        /* --- עיצוב תוכן דף הבית (הירו וגריד) --- */
+        /* --- עיצוב אזור ה-Hero עם התמונה שהוספת --- */
         header.hero {
-            background-color: #2c3e50;
+            /* הוספת התמונה עם שכבת הצללה חצי שקופה כדי שהטקסט יבלוט */
+            background-image: linear-gradient(rgba(30, 45, 60, 0.7), rgba(30, 45, 60, 0.7)), url('https://i.postimg.cc/5Nh96rgw/Gemini-Generated-Image-2o8p3m2o8p3m2o8p.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
-            padding: 120px 20px 80px; /* ריווח מוגדל כדי שהתפריט לא יסתיר */
+            padding: 160px 20px 120px; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* צללית לטקסט להבלטה נוספת */
         }
-        .hero h1 { margin-top: 0; font-size: 2.8rem; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #ecf0f1; }
         
+        .hero h1 { 
+            margin-top: 0; 
+            font-size: 3.5rem; 
+            font-weight: 900; /* טקסט מודגש ועבה מאוד */
+            letter-spacing: 1px;
+        }
+        
+        .hero p { 
+            font-size: 1.4rem; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            font-weight: 600; /* הדגשת טקסט התיאור */
+            line-height: 1.5;
+        }
+        
+        /* --- גריד הניווט --- */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             max-width: 1000px;
-            margin: -40px auto 40px;
+            margin: -60px auto 40px; /* מעלה את הכרטיסיות קצת על גבי התמונה */
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -109,7 +127,7 @@
             transition: transform 0.3s ease;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-        .card h3 { margin: 0 0 10px; color: #2980b9; }
+        .card h3 { margin: 0 0 10px; color: #2980b9; font-weight: bold; }
         .card p { margin: 0; font-size: 0.95rem; color: #666; }
         
         .card.academy { border-bottom: 4px solid #27ae60; }
@@ -117,9 +135,8 @@
         .card.services { border-bottom: 4px solid #f39c12; }
         .card.impact { border-bottom: 4px solid #8e44ad; }
         
-        /* תוכן דמה כדי שיהיה לאן לגלול */
         .dummy-content {
-            height: 1000px;
+            height: 800px;
             padding: 50px;
             color: #7f8c8d;
         }
@@ -131,7 +148,6 @@
     <nav id="main-nav">
         <div class="nav-container">
             <div class="logo-container">
-                <!-- הלוגו שהוספנו -->
                 <a href="index.html">
                     <img src="https://i.postimg.cc/mrzcZWpL/lwgw-hwtm-mwnps.gif" alt="לוגו חותם חיים">
                 </a>
@@ -146,12 +162,12 @@
             </ul>
 
             <div class="nav-actions">
-                <!-- כפתור הנעה לפעולה ברוח התמונה -->
                 <a href="#" class="cta-btn">הצטרפו היום</a>
             </div>
         </div>
     </nav>
 
+    <!-- אזור ההירו עם תמונת הרקע החדשה -->
     <header class="hero">
         <h1>חותם חיים</h1>
         <p>החברה הטכנופדגוגית הגדולה בישראל. מעל 30 נציגויות מכל העולם ושותפות דרך עם 1,600 בתי ספר ברחבי הארץ.</p>
@@ -177,15 +193,13 @@
     </div>
 
     <div class="dummy-content">
-        <p>גלול למטה כדי לראות את התפריט מופיע!</p>
-        <p>↓</p>
+        <!-- אזור גלילה -->
     </div>
 
     <!-- סקריפט להפעלת התפריט בעת גלילה -->
     <script>
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('main-nav');
-            // אם המשתמש גלל יותר מ-150 פיקסלים למטה, הוסף את המחלקה שמציגה את התפריט
             if (window.scrollY > 150) {
                 nav.classList.add('show-nav');
             } else {
