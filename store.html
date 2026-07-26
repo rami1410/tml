@@ -39,13 +39,20 @@
         .category-nav {
             background: white; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;
+            align-items: center;
         }
         .filter-btn {
             background: #ecf0f1; border: none; padding: 8px 16px; border-radius: 20px;
             cursor: pointer; font-weight: 600; color: #2c3e50; transition: all 0.3s ease;
+            outline: none;
         }
         .filter-btn:hover { background: #d5dbdb; }
         .filter-btn.active { background: #27ae60; color: white; }
+        
+        .add-category-btn {
+            background: #8e44ad; color: white; border: none; padding: 8px 16px; border-radius: 20px;
+            cursor: pointer; font-weight: bold; font-size: 0.9rem;
+        }
         
         .back-btn {
             display: inline-block; margin: 0 20px 20px; padding: 10px 20px;
@@ -61,10 +68,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            align-items: stretch; /* מוודא שכל הכרטיסיות באותה שורה באותו גובה */
+            align-items: stretch;
         }
 
-        /* --- פתרון באג 1: אחידות בגובה הכרטיסיות --- */
         .product-card {
             background: white;
             border-radius: 12px;
@@ -72,7 +78,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s ease;
             display: flex;
-            flex-direction: column; /* מסדר את התוכן מלמעלה למטה */
+            flex-direction: column;
             position: relative;
             height: 100%;
         }
@@ -91,51 +97,38 @@
         }
         .product-media img, .product-media iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
 
-        .product-content { 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            flex-grow: 1; /* אומר לתוכן לתפוס את כל המקום הפנוי */
-        }
+        .product-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; position: relative;}
         
         .product-title { margin: 0 0 10px; color: #2c3e50; font-size: 1.4rem; outline: none; }
         .product-price { font-size: 1.5rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; outline: none; } 
         
-        .advantages-list { 
-            padding-right: 20px; 
-            margin-bottom: 20px; 
-            color: #555; 
-            font-size: 0.95rem; 
-            outline: none;
-            flex-grow: 1; /* זה מה שדוחף את כפתור הקנייה תמיד למטה! */
-        }
+        .advantages-list { padding-right: 20px; margin-bottom: 20px; color: #555; font-size: 0.95rem; outline: none; flex-grow: 1; }
         .advantages-list li { margin-bottom: 8px; }
 
-        .related-products { 
-            background-color: #eafaf1; padding: 15px; border-radius: 8px; 
-            margin-bottom: 20px; font-size: 0.85rem; border-right: 4px solid #27ae60; outline: none; 
-        }
+        .related-products { background-color: #eafaf1; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; border-right: 4px solid #27ae60; outline: none; }
         .related-products strong { display: block; margin-bottom: 5px; color: #27ae60; }
+
+        /* אזור קישור יצרן */
+        .manufacturer-area { margin-bottom: 15px; text-align: center; }
+        .manufacturer-link { color: #2980b9; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.3s; }
+        .manufacturer-link:hover { color: #1c5980; text-decoration: underline; }
 
         .buy-btn {
             display: block; text-align: center; background-color: #27ae60; color: white; padding: 12px;
             text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s;
-            cursor: pointer; border: none; width: 100%; box-sizing: border-box;
-            margin-top: auto; /* מוודא שהכפתור תמיד בתחתית */
+            cursor: pointer; border: none; width: 100%; box-sizing: border-box; margin-top: auto;
         }
         .buy-btn:hover { background-color: #219a52; }
 
         /* --- ממשק מנהל --- */
         .admin-login-trigger {
-            position: fixed; bottom: 20px; left: 20px; background-color: #34495e;
-            color: white; padding: 10px 15px; border-radius: 30px; text-decoration: none;
-            font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1500;
+            position: fixed; bottom: 20px; left: 20px; background-color: #34495e; color: white; padding: 10px 15px; 
+            border-radius: 30px; text-decoration: none; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1500;
         }
         
         #login-modal {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: white; padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 2000; text-align: center; width: 300px;
+            background: white; padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 2000; text-align: center; width: 300px;
         }
         #login-modal input { display: block; width: 90%; margin: 10px auto; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         #login-modal button { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-top: 10px; width: 90%; }
@@ -146,25 +139,25 @@
         body.is-admin .buy-btn { display: none; } 
         body.is-admin .editable { border: 1px dashed #f39c12; padding: 2px; }
         
-        .admin-controls { position: absolute; top: 10px; left: 10px; gap: 5px; z-index: 10; }
-        .admin-btn { background: #f39c12; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        .admin-controls { position: absolute; top: 10px; left: 10px; gap: 5px; z-index: 10; display: flex; flex-direction: column; }
+        .admin-btn { background: #f39c12; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px;}
         .admin-btn.delete { background: #e74c3c; }
         .admin-btn.duplicate { background: #3498db; }
+        .admin-btn.categories { background: #16a085; }
         
-        /* כפתור עריכת מדיה חדש */
-        .admin-btn.media-edit { background: #9b59b6; position: absolute; top: 10px; right: 10px; z-index: 20; display: none; }
+        .admin-btn.media-edit { background: #9b59b6; position: absolute; top: 10px; right: 10px; z-index: 20; display: none; margin: 0;}
         body.is-admin .admin-btn.media-edit { display: block; }
+        
+        .admin-btn.link-edit { background: #2980b9; margin-top: 5px; }
 
-        .admin-top-bar {
-            display: none; background: #34495e; color: white; padding: 15px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 1000;
-        }
+        .admin-top-bar { display: none; background: #34495e; color: white; padding: 15px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 1000; }
         body.is-admin .admin-top-bar { display: block; }
     </style>
 </head>
 <body>
 
     <div class="admin-top-bar">
-        מצב עריכת מנהל פעיל 🛠️ | לחץ על טקסטים או על "ערוך מדיה" כדי לעדכן את התצוגה
+        מצב עריכת מנהל פעיל 🛠️ | ערוך טקסטים, קטגוריות וקישורים (השינויים זמניים לדפדפן זה)
         <button onclick="logoutAdmin()" style="margin-right:20px; background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">התנתק</button>
     </div>
 
@@ -175,10 +168,13 @@
         </div>
     </header>
 
-    <div class="category-nav">
-        <button class="filter-btn active" onclick="filterProducts('all')">הכל</button>
-        <button class="filter-btn" onclick="filterProducts('robotics')">🤖 רובוטיקה</button>
-        <button class="filter-btn" onclick="filterProducts('vr')">👓 מציאות מדומה (VR)</button>
+    <!-- סרגל קטגוריות -->
+    <div class="category-nav" id="category-container">
+        <button class="filter-btn active editable-cat" onclick="filterProducts('all')">הכל</button>
+        <button class="filter-btn editable-cat" onclick="filterProducts('robotics')">🤖 רובוטיקה</button>
+        <button class="filter-btn editable-cat" onclick="filterProducts('vr')">👓 מציאות מדומה (VR)</button>
+        <!-- כפתור הוספת קטגוריה (מופיע רק למנהל) -->
+        <button class="add-category-btn admin-only" onclick="addNewCategory()">➕ הוסף קטגוריה</button>
     </div>
 
     <a href="index.html" class="back-btn">← חזרה לדף הבית</a>
@@ -190,6 +186,7 @@
             <div class="admin-controls admin-only">
                 <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
                 <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
+                <button class="admin-btn categories" onclick="editProductCategories(this)">🏷️ שייך לקטגוריות</button>
             </div>
             <div class="product-media">
                 <button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button>
@@ -206,6 +203,13 @@
                 <div class="related-products editable">
                     <strong>מוצרים משלימים:</strong> חיישן צבע נוסף, משטח תחרות רובוטיקה.
                 </div>
+                
+                <!-- קישור יצרן חדש -->
+                <div class="manufacturer-area">
+                    <a href="https://example.com" class="manufacturer-link" target="_blank">🔗 למידע נוסף באתר היצרן</a>
+                    <button class="admin-btn link-edit admin-only" onclick="editManufacturerLink(this)">ערוך קישור ✏️</button>
+                </div>
+
                 <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
@@ -215,6 +219,7 @@
             <div class="admin-controls admin-only">
                 <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
                 <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
+                <button class="admin-btn categories" onclick="editProductCategories(this)">🏷️ שייך לקטגוריות</button>
             </div>
             <div class="product-media">
                 <button class="admin-btn media-edit admin-only" onclick="editMedia(this)">✏️ ערוך מדיה</button>
@@ -230,6 +235,13 @@
                 <div class="related-products editable">
                     <strong>מוצרים משלימים:</strong> ארון טעינה כיתתי, רישיון לתכני VR.
                 </div>
+
+                <!-- קישור יצרן חדש -->
+                <div class="manufacturer-area">
+                    <a href="https://meta.com" class="manufacturer-link" target="_blank">🔗 למידע נוסף באתר היצרן</a>
+                    <button class="admin-btn link-edit admin-only" onclick="editManufacturerLink(this)">ערוך קישור ✏️</button>
+                </div>
+
                 <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
@@ -247,15 +259,22 @@
     </div>
 
     <script>
+        // --- פונקציות מערכת קטגוריות ---
         function filterProducts(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            // רק אם יש אירוע לחיצה (כדי למנוע שגיאות בעת הוספה דינמית)
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
 
             const products = document.querySelectorAll('.product-card');
             products.forEach(product => {
                 const productCategories = product.getAttribute('data-category');
-                if (category === 'all' || (productCategories && productCategories.includes(category))) {
+                // פיצול הקטגוריות למערך כדי למצוא התאמה מדויקת (מונע באגים של שמות דומים)
+                const categoriesArray = productCategories ? productCategories.split(' ') : [];
+                
+                if (category === 'all' || categoriesArray.includes(category)) {
                     product.style.display = 'flex';
                 } else {
                     product.style.display = 'none';
@@ -263,6 +282,7 @@
             });
         }
 
+        // --- פונקציות מנהל ---
         function openLogin(e) {
             e.preventDefault();
             document.getElementById('login-modal').style.display = 'block';
@@ -292,12 +312,65 @@
             document.body.classList.add('is-admin');
             const editables = document.querySelectorAll('.editable');
             editables.forEach(el => { el.setAttribute('contenteditable', 'true'); });
+            
+            // מאפשר עריכת שמות הקטגוריות בסרגל העליון
+            const catButtons = document.querySelectorAll('.editable-cat');
+            catButtons.forEach(el => { el.setAttribute('contenteditable', 'true'); });
         }
 
         function logoutAdmin() {
             document.body.classList.remove('is-admin');
-            const editables = document.querySelectorAll('.editable');
+            const editables = document.querySelectorAll('.editable, .editable-cat');
             editables.forEach(el => { el.setAttribute('contenteditable', 'false'); });
+        }
+
+        // עריכת הקישור ליצרן
+        function editManufacturerLink(btnElement) {
+            const linkElement = btnElement.previousElementSibling;
+            const currentUrl = linkElement.getAttribute('href');
+            const newUrl = prompt("הדבק כאן את הקישור החדש לאתר היצרן:", currentUrl);
+            
+            if (newUrl !== null && newUrl.trim() !== "") {
+                linkElement.setAttribute('href', newUrl.trim());
+                alert("הקישור עודכן בהצלחה!");
+            }
+        }
+
+        // הוספת קטגוריה חדשה לסרגל הניווט
+        function addNewCategory() {
+            const catId = prompt("הכנס מזהה באנגלית לקטגוריה (למשל: 3d-printers):", "");
+            if (!catId) return;
+            
+            const catName = prompt("הכנס את שם הקטגוריה שיוצג לגולשים (למשל: 🖨️ מדפסות תלת מימד):", "");
+            if (!catName) return;
+
+            const container = document.getElementById('category-container');
+            const addBtn = document.querySelector('.add-category-btn');
+            
+            const newBtn = document.createElement('button');
+            newBtn.className = 'filter-btn editable-cat';
+            newBtn.setAttribute('contenteditable', 'true');
+            newBtn.setAttribute('onclick', `filterProducts('${catId.trim()}')`);
+            newBtn.innerHTML = catName;
+            
+            // הכנסת הכפתור החדש לפני כפתור ה"הוסף"
+            container.insertBefore(newBtn, addBtn);
+        }
+
+        // שיוך מוצר למספר קטגוריות
+        function editProductCategories(btnElement) {
+            const productCard = btnElement.closest('.product-card');
+            const currentCategories = productCard.getAttribute('data-category') || "";
+            
+            const newCategories = prompt(
+                "הכנס את מזהי הקטגוריות של המוצר, מופרדים ברווח.\nלדוגמה: robotics vr", 
+                currentCategories
+            );
+            
+            if (newCategories !== null) {
+                productCard.setAttribute('data-category', newCategories.trim());
+                alert("קטגוריות המוצר עודכנו! (מומלץ לרענן את הסינון כדי לראות שינויים)");
+            }
         }
 
         function deleteProduct(btnElement) {
@@ -313,13 +386,11 @@
             grid.appendChild(clonedCard);
         }
 
-        /* פתרון באג 2: פונקציה חדשה לעריכת תמונה או סרטון דרך הממשק */
         function editMedia(btnElement) {
             const mediaContainer = btnElement.closest('.product-media');
             const newUrl = prompt("הדבק כאן קישור לתמונה (URL) או קוד הטמעה של יוטיוב (Embed):", "");
             
             if (newUrl && newUrl.trim() !== "") {
-                // בדיקה אם זה קוד הטמעה של יוטיוב או לינק רגיל לתמונה
                 if (newUrl.includes('youtube.com') || newUrl.includes('youtu.be') || newUrl.includes('<iframe')) {
                     let iframeSrc = newUrl;
                     if(newUrl.includes('<iframe')) {
