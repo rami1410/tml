@@ -13,16 +13,19 @@
             padding: 0;
         }
         
-        /* --- עיצוב ירוק חדש --- */
+        /* --- עיצוב כותרת החנות עם התמונה והצללה ירוקה --- */
         header {
-            background-color: #27ae60; /* ירוק ראשי */
+            background-image: linear-gradient(rgba(39, 174, 96, 0.85), rgba(39, 174, 96, 0.85)), url('https://i.postimg.cc/5Nh96rgw/Gemini-Generated-Image-2o8p3m2o8p3m2o8p.png');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 40px 20px;
+            padding: 80px 20px; /* הוגדל מעט כדי שהתמונה תבלוט */
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4); /* צללית לטקסט */
         }
-        header h1 { margin: 0 0 10px 0; font-size: 2.5rem; }
-        header p { margin: 0; font-size: 1.2rem; }
+        header h1 { margin: 0 0 10px 0; font-size: 3rem; font-weight: 800;}
+        header p { margin: 0; font-size: 1.3rem; font-weight: 600;}
         
         .back-btn {
             display: inline-block;
@@ -66,12 +69,12 @@
             justify-content: center;
             color: #7f8c8d;
             font-size: 0.9rem;
-            border-bottom: 3px solid #27ae60; /* קו תחתון ירוק */
+            border-bottom: 3px solid #27ae60;
         }
 
         .product-content { padding: 20px; flex-grow: 1; }
         .product-title { margin: 0 0 10px; color: #2c3e50; font-size: 1.4rem; outline: none; }
-        .product-price { font-size: 1.5rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; outline: none; } /* מחיר ירוק */
+        .product-price { font-size: 1.5rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; outline: none; } 
         
         .advantages-list {
             padding-right: 20px;
@@ -83,12 +86,12 @@
         .advantages-list li { margin-bottom: 8px; }
 
         .related-products {
-            background-color: #eafaf1; /* רקע ירוק בהיר מאוד */
+            background-color: #eafaf1;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
             font-size: 0.85rem;
-            border-right: 4px solid #27ae60; /* קו צדדי ירוק */
+            border-right: 4px solid #27ae60;
             outline: none;
         }
         .related-products strong { display: block; margin-bottom: 5px; color: #27ae60; }
@@ -96,7 +99,7 @@
         .buy-btn {
             display: block;
             text-align: center;
-            background-color: #27ae60; /* כפתור קנייה ירוק */
+            background-color: #27ae60;
             color: white;
             padding: 12px;
             text-decoration: none;
@@ -142,12 +145,10 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999;
         }
 
-        /* אלמנטים של מנהל בלבד */
         .admin-only { display: none; }
         
-        /* כשמצב מנהל פעיל */
         body.is-admin .admin-only { display: flex; }
-        body.is-admin .buy-btn { display: none; } /* מסתיר כפתור קנייה במצב עריכה */
+        body.is-admin .buy-btn { display: none; } 
         body.is-admin .editable { border: 1px dashed #f39c12; padding: 2px; }
         
         .admin-controls {
@@ -172,7 +173,6 @@
 </head>
 <body>
 
-    <!-- סרגל מנהל עליון (מוסתר כברירת מחדל) -->
     <div class="admin-top-bar">
         מצב עריכת מנהל פעיל 🛠️ | לחץ על טקסטים במוצרים כדי לערוך אותם 
         <button onclick="logoutAdmin()" style="margin-right:20px; background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">התנתק</button>
@@ -226,7 +226,7 @@
                 [מקום לתמונה או סרטון של המוצר]
             </div>
             <div class="product-content">
-                <h3 class="product-title editable">משקפי מציאות מדומה (VR) לחנוך</h3>
+                <h3 class="product-title editable">משקפי מציאות מדומה (VR) לחינוך</h3>
                 <div class="product-price editable">₪890</div>
                 
                 <strong>למה זה כדאי?</strong>
@@ -247,10 +247,8 @@
 
     </div>
 
-    <!-- כפתור פתיחת חלון התחברות -->
     <a href="#" class="admin-login-trigger" onclick="openLogin()">🔒 כניסת מנהל צוות</a>
 
-    <!-- חלון התחברות -->
     <div id="overlay" onclick="closeLogin()"></div>
     <div id="login-modal">
         <h3>התחברות מנהל מערכת</h3>
@@ -260,7 +258,6 @@
         <button onclick="checkLogin()">היכנס למערכת</button>
     </div>
 
-    <!-- סקריפט ניהול (סימולציית צד לקוח) -->
     <script>
         function openLogin() {
             document.getElementById('login-modal').style.display = 'block';
@@ -287,7 +284,6 @@
         function enableAdminMode() {
             document.body.classList.add('is-admin');
             
-            // הפיכת הטקסטים לברי עריכה ישירות על המסך
             const editables = document.querySelectorAll('.editable');
             editables.forEach(el => {
                 el.setAttribute('contenteditable', 'true');
