@@ -81,20 +81,19 @@
 
         /* --- עיצוב אזור ה-Hero עם התמונה שהוספת --- */
         header.hero {
-            /* הוספת התמונה עם שכבת הצללה חצי שקופה כדי שהטקסט יבלוט */
             background-image: linear-gradient(rgba(30, 45, 60, 0.7), rgba(30, 45, 60, 0.7)), url('https://i.postimg.cc/5Nh96rgw/Gemini-Generated-Image-2o8p3m2o8p3m2o8p.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             color: white;
             padding: 160px 20px 120px; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* צללית לטקסט להבלטה נוספת */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
         }
         
         .hero h1 { 
             margin-top: 0; 
             font-size: 3.5rem; 
-            font-weight: 900; /* טקסט מודגש ועבה מאוד */
+            font-weight: 900;
             letter-spacing: 1px;
         }
         
@@ -102,17 +101,17 @@
             font-size: 1.4rem; 
             max-width: 800px; 
             margin: 0 auto; 
-            font-weight: 600; /* הדגשת טקסט התיאור */
+            font-weight: 600;
             line-height: 1.5;
         }
         
-        /* --- גריד הניווט --- */
+        /* --- גריד הניווט (כאן שינינו את הצבעים!) --- */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             max-width: 1000px;
-            margin: -60px auto 40px; /* מעלה את הכרטיסיות קצת על גבי התמונה */
+            margin: -60px auto 40px;
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -130,10 +129,11 @@
         .card h3 { margin: 0 0 10px; color: #2980b9; font-weight: bold; }
         .card p { margin: 0; font-size: 0.95rem; color: #666; }
         
-        .card.academy { border-bottom: 4px solid #27ae60; }
-        .card.store { border-bottom: 4px solid #e74c3c; }
-        .card.services { border-bottom: 4px solid #f39c12; }
-        .card.impact { border-bottom: 4px solid #8e44ad; }
+        /* הפסים התחתונים המעודכנים */
+        .card.academy { border-bottom: 4px solid #4a235a; } /* סגול עמוק */
+        .card.store { border-bottom: 4px solid #27ae60; } /* ירוק */
+        .card.services { border-bottom: 4px solid #f39c12; } /* כתום/צהוב */
+        .card.impact { border-bottom: 4px solid #2980b9; } /* כחול */
         
         .dummy-content {
             height: 800px;
@@ -175,19 +175,19 @@
 
     <div class="nav-grid">
         <a href="academy.html" class="card academy">
-            <h3>אקדמיה והכשרות 🎓</h3>
+            <h3 style="color: #4a235a;">אקדמיה והכשרות 🎓</h3>
             <p>פירמידת הקורסים שלנו, פיתוח כישורים, מחקר, פרויקטים והכשרות מורים.</p>
         </a>
         <a href="store.html" class="card store">
-            <h3>חנות ציוד טכנופדגוגי 🛒</h3>
+            <h3 style="color: #27ae60;">חנות ציוד טכנופדגוגי 🛒</h3>
             <p>ציוד מתקדם מכל העולם: סרטונים, יתרונות ומחירים לכל מוצר.</p>
         </a>
         <a href="#" class="card services">
-            <h3>השירותים שלנו 🛠️</h3>
+            <h3 style="color: #f39c12;">השירותים שלנו 🛠️</h3>
             <p>6 תחומי הליבה שבהם חותם חיים מובילה את העשייה החינוכית.</p>
         </a>
         <a href="#" class="card impact">
-            <h3>20 הישגים גדולים 🏆</h3>
+            <h3 style="color: #2980b9;">20 הישגים גדולים 🏆</h3>
             <p>הדרך שעברנו, ההשפעה שלנו בשטח ונקודות ציון משמעותיות.</p>
         </a>
     </div>
