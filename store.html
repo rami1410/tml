@@ -12,16 +12,18 @@
             margin: 0;
             padding: 0;
         }
+        
+        /* --- עיצוב ירוק חדש --- */
         header {
-            background-color: #e74c3c;
+            background-color: #27ae60; /* ירוק ראשי */
             color: white;
             padding: 40px 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 { margin: 0 0 10px 0; font-size: 2.5rem; }
         header p { margin: 0; font-size: 1.2rem; }
         
-        /* כפתור חזרה לדף הבית */
         .back-btn {
             display: inline-block;
             margin: 20px;
@@ -34,7 +36,6 @@
         }
         .back-btn:hover { background-color: #1a252f; }
 
-        /* גריד המוצרים */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -44,7 +45,6 @@
             padding: 20px;
         }
 
-        /* עיצוב כרטיס מוצר */
         .product-card {
             background: white;
             border-radius: 12px;
@@ -53,6 +53,7 @@
             transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         
@@ -65,48 +66,117 @@
             justify-content: center;
             color: #7f8c8d;
             font-size: 0.9rem;
-            border-bottom: 3px solid #e74c3c;
-            /* כאן בעתיד נשים תמונות/סרטונים אמיתיים */
+            border-bottom: 3px solid #27ae60; /* קו תחתון ירוק */
         }
 
         .product-content { padding: 20px; flex-grow: 1; }
-        .product-title { margin: 0 0 10px; color: #2c3e50; font-size: 1.4rem; }
-        .product-price { font-size: 1.5rem; color: #e74c3c; font-weight: bold; margin-bottom: 15px; }
+        .product-title { margin: 0 0 10px; color: #2c3e50; font-size: 1.4rem; outline: none; }
+        .product-price { font-size: 1.5rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; outline: none; } /* מחיר ירוק */
         
         .advantages-list {
             padding-right: 20px;
             margin-bottom: 20px;
             color: #555;
             font-size: 0.95rem;
+            outline: none;
         }
         .advantages-list li { margin-bottom: 8px; }
 
         .related-products {
-            background-color: #f1f8ff;
+            background-color: #eafaf1; /* רקע ירוק בהיר מאוד */
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
             font-size: 0.85rem;
-            border-right: 4px solid #3498db;
+            border-right: 4px solid #27ae60; /* קו צדדי ירוק */
+            outline: none;
         }
-        .related-products strong { display: block; margin-bottom: 5px; color: #2980b9; }
+        .related-products strong { display: block; margin-bottom: 5px; color: #27ae60; }
 
-        /* כפתור קנייה */
         .buy-btn {
             display: block;
             text-align: center;
-            background-color: #27ae60;
+            background-color: #27ae60; /* כפתור קנייה ירוק */
             color: white;
             padding: 12px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
         }
         .buy-btn:hover { background-color: #219a52; }
+
+        /* --- ממשק מנהל נסתר --- */
+        .admin-login-trigger {
+            display: block;
+            text-align: center;
+            margin: 50px auto;
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        
+        #login-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-align: center;
+        }
+        #login-modal input {
+            display: block; width: 90%; margin: 10px auto; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+        }
+        #login-modal button {
+            background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-top: 10px;
+        }
+        #overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999;
+        }
+
+        /* אלמנטים של מנהל בלבד */
+        .admin-only { display: none; }
+        
+        /* כשמצב מנהל פעיל */
+        body.is-admin .admin-only { display: flex; }
+        body.is-admin .buy-btn { display: none; } /* מסתיר כפתור קנייה במצב עריכה */
+        body.is-admin .editable { border: 1px dashed #f39c12; padding: 2px; }
+        
+        .admin-controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            gap: 5px;
+            z-index: 10;
+        }
+        .admin-btn {
+            background: #f39c12; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold;
+        }
+        .admin-btn.delete { background: #e74c3c; }
+        .admin-btn.duplicate { background: #3498db; }
+        
+        .admin-top-bar {
+            display: none;
+            background: #34495e; color: white; padding: 15px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 1000;
+        }
+        body.is-admin .admin-top-bar { display: block; }
     </style>
 </head>
 <body>
+
+    <!-- סרגל מנהל עליון (מוסתר כברירת מחדל) -->
+    <div class="admin-top-bar">
+        מצב עריכת מנהל פעיל 🛠️ | לחץ על טקסטים במוצרים כדי לערוך אותם 
+        <button onclick="logoutAdmin()" style="margin-right:20px; background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">התנתק</button>
+    </div>
 
     <header>
         <h1>חנות הציוד הטכנופדגוגי</h1>
@@ -115,59 +185,138 @@
 
     <a href="index.html" class="back-btn">← חזרה לדף הבית</a>
 
-    <div class="products-grid">
+    <div class="products-grid" id="store-grid">
         
-        <!-- מוצר לדוגמה 1 -->
+        <!-- מוצר 1 -->
         <div class="product-card">
+            <div class="admin-controls admin-only">
+                <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
+                <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
+            </div>
             <div class="product-media">
                 [מקום לתמונה או סרטון של המוצר]
             </div>
             <div class="product-content">
-                <h3 class="product-title">ערכת רובוטיקה מודולרית מתקדמת</h3>
-                <div class="product-price">₪1,450</div>
+                <h3 class="product-title editable">ערכת רובוטיקה מודולרית מתקדמת</h3>
+                <div class="product-price editable">₪1,450</div>
                 
                 <strong>למה זה כדאי?</strong>
-                <ul class="advantages-list">
+                <ul class="advantages-list editable">
                     <li>פיתוח חשיבה חישובית ופתרון בעיות</li>
                     <li>מותאם ללמידה מבוססת פרויקטים (PBL)</li>
                     <li>כולל חיישנים חכמים ומנועים מדויקים</li>
                 </ul>
 
-                <div class="related-products">
+                <div class="related-products editable">
                     <strong>מוצרים משלימים:</strong>
                     חיישן צבע נוסף, משטח תחרות רובוטיקה, השתלמות למורה המלווה.
                 </div>
 
-                <a href="#" class="buy-btn" onclick="alert('בעתיד נחבר כאן מערכת סליקה (כמו Snipcart) או כפתור פייפאל/Stripe!')">הוסף לעגלה / רכוש עכשיו</a>
+                <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
 
-        <!-- מוצר לדוגמה 2 -->
+        <!-- מוצר 2 -->
         <div class="product-card">
+            <div class="admin-controls admin-only">
+                <button class="admin-btn delete" onclick="deleteProduct(this)">מחק</button>
+                <button class="admin-btn duplicate" onclick="duplicateProduct(this)">שכפל</button>
+            </div>
             <div class="product-media">
                 [מקום לתמונה או סרטון של המוצר]
             </div>
             <div class="product-content">
-                <h3 class="product-title">משקפי מציאות מדומה (VR) לחינוך</h3>
-                <div class="product-price">₪890</div>
+                <h3 class="product-title editable">משקפי מציאות מדומה (VR) לחנוך</h3>
+                <div class="product-price editable">₪890</div>
                 
                 <strong>למה זה כדאי?</strong>
-                <ul class="advantages-list">
+                <ul class="advantages-list editable">
                     <li>סיורים וירטואליים במקומות היסטוריים</li>
                     <li>המחשה חזותית של תהליכים במדעים</li>
                     <li>הפעלה פשוטה ללא צורך במחשב חזק</li>
                 </ul>
 
-                <div class="related-products">
+                <div class="related-products editable">
                     <strong>מוצרים משלימים:</strong>
                     ארון טעינה כיתתי, רישיון לספריית תכני VR חינוכיים.
                 </div>
 
-                <a href="#" class="buy-btn" onclick="alert('בעתיד נחבר כאן מערכת סליקה!')">הוסף לעגלה / רכוש עכשיו</a>
+                <button class="buy-btn" onclick="alert('רכישה תתאפשר בקרוב!')">הוסף לעגלה / רכוש עכשיו</button>
             </div>
         </div>
 
     </div>
+
+    <!-- כפתור פתיחת חלון התחברות -->
+    <a href="#" class="admin-login-trigger" onclick="openLogin()">🔒 כניסת מנהל צוות</a>
+
+    <!-- חלון התחברות -->
+    <div id="overlay" onclick="closeLogin()"></div>
+    <div id="login-modal">
+        <h3>התחברות מנהל מערכת</h3>
+        <p style="font-size: 0.8rem; color: #7f8c8d;">שם משתמש: admin | סיסמה: 1234</p>
+        <input type="text" id="username" placeholder="שם משתמש">
+        <input type="password" id="password" placeholder="סיסמה">
+        <button onclick="checkLogin()">היכנס למערכת</button>
+    </div>
+
+    <!-- סקריפט ניהול (סימולציית צד לקוח) -->
+    <script>
+        function openLogin() {
+            document.getElementById('login-modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeLogin() {
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function checkLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            
+            if(user === 'admin' && pass === '1234') {
+                closeLogin();
+                enableAdminMode();
+            } else {
+                alert('שם משתמש או סיסמה שגויים');
+            }
+        }
+
+        function enableAdminMode() {
+            document.body.classList.add('is-admin');
+            
+            // הפיכת הטקסטים לברי עריכה ישירות על המסך
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+            });
+            alert('ברוך הבא! כעת תוכל ללחוץ על הטקסטים כדי לערוך אותם, ולשכפל או למחוק מוצרים.');
+        }
+
+        function logoutAdmin() {
+            document.body.classList.remove('is-admin');
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                el.setAttribute('contenteditable', 'false');
+            });
+        }
+
+        function deleteProduct(btnElement) {
+            if(confirm('האם אתה בטוח שברצונך למחוק מוצר זה?')) {
+                const card = btnElement.closest('.product-card');
+                card.remove();
+            }
+        }
+
+        function duplicateProduct(btnElement) {
+            const grid = document.getElementById('store-grid');
+            const cardToCopy = btnElement.closest('.product-card');
+            const clonedCard = cardToCopy.cloneNode(true);
+            grid.appendChild(clonedCard);
+        }
+    </script>
 
 </body>
 </html>
