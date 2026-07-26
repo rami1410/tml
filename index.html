@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חותם חיים | טכנופדגוגיה שמחוללת שינוי</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 20px;
+        }
+        h1 { margin-top: 0; font-size: 2.5rem; }
+        .hero-text { font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px; color: #ecf0f1; }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #2c3e50;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card h3 { margin: 0 0 10px; color: #2980b9; }
+        .card p { margin: 0; font-size: 0.95rem; color: #666; }
+        
+        /* צבעים ספציפיים לכרטיסיות */
+        .card.academy { border-bottom: 4px solid #27ae60; }
+        .card.store { border-bottom: 4px solid #e74c3c; }
+        .card.services { border-bottom: 4px solid #f39c12; }
+        .card.impact { border-bottom: 4px solid #8e44ad; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>חותם חיים</h1>
+        <p class="hero-text">החברה הטכנופדגוגית הגדולה בישראל. מעל 30 נציגויות מכל העולם ושותפות דרך עם 1,600 בתי ספר ברחבי הארץ.</p>
+    </header>
+
+    <div class="nav-grid">
+        <!-- קישור לעמוד האקדמיה שכבר יצרנו -->
+        <a href="academy.html" class="card academy">
+            <h3>אקדמיה והכשרות 🎓</h3>
+            <p>פירמידת הקורסים שלנו, פיתוח כישורים, מחקר, פרויקטים והכשרות מורים.</p>
+        </a>
+
+        <!-- קישור לעמוד החנות (שניצור בהמשך) -->
+        <a href="store.html" class="card store">
+            <h3>חנות ציוד טכנופדגוגי 🛒</h3>
+            <p>ציוד מתקדם מכל העולם: סרטונים, יתרונות ומחירים לכל מוצר.</p>
+        </a>
+
+        <!-- קישור לעמוד השירותים (שניצור בהמשך) -->
+        <a href="#" class="card services">
+            <h3>השירותים שלנו 🛠️</h3>
+            <p>6 תחומי הליבה שבהם חותם חיים מובילה את העשייה החינוכית.</p>
+        </a>
+
+        <!-- קישור לעמוד ההישגים (שניצור בהמשך) -->
+        <a href="#" class="card impact">
+            <h3>20 הישגים גדולים 🏆</h3>
+            <p>הדרך שעברנו, ההשפעה שלנו בשטח ונקודות ציון משמעותיות.</p>
+        </a>
+    </div>
+
+</body>
+</html>
