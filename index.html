@@ -3,210 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>חותם חיים | טכנופדגוגיה שמחוללת שינוי</title>
+    <title>חותם חיים | CodeCombat ישראל</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --brand-blue: #41B5C9;
+            --brand-orange: #F5692B;
+            --brand-green: #8CC63F;
+            --brand-yellow: #FDBB2E;
+            --brand-dark: #2D3748;
+            --brand-light: #FDFBF7;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--brand-light);
+            color: var(--brand-dark);
             margin: 0;
             padding: 0;
-            text-align: center;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* גלילה חלקה בלחיצה על התפריט */
         }
 
-        /* --- עיצוב התפריט השמרני הנגלל --- */
-        #main-nav {
-            position: fixed;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-bottom: 2px solid #eaeaea;
-            transition: top 0.4s ease-in-out;
-            z-index: 1000;
-        }
-        
-        #main-nav.show-nav {
-            top: 0;
-        }
-
-        .nav-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 20px;
+            padding: 0 20px;
+        }
+
+        /* --- תפריט ניווט עליון --- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-container img {
-            height: 50px;
-            width: auto;
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--brand-dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand-blue); }
+        
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        
+        /* כפתור שפות */
+        .lang-selector {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: white;
+            font-family: 'Rubik', sans-serif;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #3498db;
-        }
-
-        .cta-btn {
-            background-color: #e67e22;
-            color: white !important;
-            padding: 8px 24px;
-            border-radius: 4px;
+        .store-btn {
+            background-color: var(--brand-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: 0.3s;
         }
+        .store-btn:hover { background-color: #7ab332; transform: translateY(-2px); }
 
-        .cta-btn:hover {
-            background-color: #d35400;
+        /* --- אזור הגיבור (Hero) --- */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
         }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .hero h1 span { color: var(--brand-orange); }
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; color: #555; line-height: 1.6; }
 
-        /* --- עיצוב אזור ה-Hero עם התמונה שהוספת --- */
-        header.hero {
-            background-image: linear-gradient(rgba(30, 45, 60, 0.7), rgba(30, 45, 60, 0.7)), url('https://i.postimg.cc/5Nh96rgw/Gemini-Generated-Image-2o8p3m2o8p3m2o8p.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-            padding: 160px 20px 120px; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-        }
+        /* --- אזור גפ"ן --- */
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
         
-        .hero h1 { 
-            margin-top: 0; 
-            font-size: 3.5rem; 
+        .gefen-section { border-top: 8px solid var(--brand-green); background-color: white; }
+        .gefen-icon { font-size: 4rem; margin-bottom: 10px; }
+        
+        .gefen-numbers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            background: var(--brand-light);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(140, 198, 63, 0.2);
+        }
+        .gefen-number {
+            background: white;
+            border: 2px solid var(--brand-green);
+            color: var(--brand-dark);
             font-weight: 900;
-            letter-spacing: 1px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        
-        .hero p { 
-            font-size: 1.4rem; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            font-weight: 600;
-            line-height: 1.5;
-        }
-        
-        /* --- גריד הניווט (כאן שינינו את הצבעים!) --- */
-        .nav-grid {
+
+        /* --- אזור אנשי קשר --- */
+        .contact-section { background-color: #f8f9fa; }
+        .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: -60px auto 40px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
+            gap: 25px;
+            margin-top: 40px;
         }
-        .card {
+        .contact-card {
             background: white;
-            padding: 30px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            text-decoration: none;
-            color: #2c3e50;
-            transition: transform 0.3s ease;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-        .card h3 { margin: 0 0 10px; color: #2980b9; font-weight: bold; }
-        .card p { margin: 0; font-size: 0.95rem; color: #666; }
-        
-        /* הפסים התחתונים המעודכנים */
-        .card.academy { border-bottom: 4px solid #4a235a; } /* סגול עמוק */
-        .card.store { border-bottom: 4px solid #27ae60; } /* ירוק */
-        .card.services { border-bottom: 4px solid #f39c12; } /* כתום/צהוב */
-        .card.impact { border-bottom: 4px solid #2980b9; } /* כחול */
-        
-        .dummy-content {
-            height: 800px;
-            padding: 50px;
-            color: #7f8c8d;
+        .contact-card:hover { border-color: var(--brand-blue); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .contact-name { font-size: 1.4rem; font-weight: bold; margin: 10px 0 5px; }
+        .contact-role { color: #777; margin-bottom: 20px; font-size: 0.95rem; }
+        .contact-actions {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        .phone-link { color: var(--brand-dark); font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+        .phone-link:hover { color: var(--brand-blue); }
+        .whatsapp-icon { width: 35px; height: 35px; fill: #25D366; transition: 0.3s; }
+        .whatsapp-icon:hover { transform: scale(1.1); }
+
     </style>
 </head>
 <body>
 
-    <!-- התפריט העליון הנסתר -->
-    <nav id="main-nav">
-        <div class="nav-container">
-            <div class="logo-container">
-                <a href="index.html">
-                    <img src="https://i.postimg.cc/mrzcZWpL/lwgw-hwtm-mwnps.gif" alt="לוגו חותם חיים">
-                </a>
-            </div>
+    <!-- תפריט ניווט -->
+    <nav>
+        <div class="container nav-content">
+            <div style="font-weight: 900; font-size: 1.5rem; color: var(--brand-dark);">חותם חיים</div>
             
-            <ul class="nav-links">
-                <li><a href="academy.html">אקדמיה והכשרות</a></li>
-                <li><a href="store.html">חנות הציוד</a></li>
-                <li><a href="#">שירותים</a></li>
-                <li><a href="#">הישגים</a></li>
-                <li><a href="#">שאלות נפוצות</a></li>
-            </ul>
+            <!-- קישורי עוגן שמקפיצים למקומות שונים באותו עמוד -->
+            <div class="nav-links">
+                <a href="#hero" data-i18n="nav_home">ראשי</a>
+                <a href="#gefen" data-i18n="nav_gefen">גפ"ן</a>
+                <a href="#contact" data-i18n="nav_contact">צוות וקשר</a>
+                <a href="academy.html" data-i18n="nav_academy" style="color: #8e44ad;">האקדמיה</a>
+            </div>
 
             <div class="nav-actions">
-                <a href="#" class="cta-btn">הצטרפו היום</a>
+                <select class="lang-selector" id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="he">עברית</option>
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+                <!-- קישור לעמוד החנות הנפרד -->
+                <a href="store.html" class="store-btn" data-i18n="nav_store">כניסה לחנות 🛒</a>
             </div>
         </div>
     </nav>
 
-    <!-- אזור ההירו עם תמונת הרקע החדשה -->
-    <header class="hero">
-        <h1>חותם חיים</h1>
-        <p>החברה הטכנופדגוגית הגדולה בישראל. מעל 30 נציגויות מכל העולם ושותפות דרך עם 1,600 בתי ספר ברחבי הארץ.</p>
-    </header>
+    <!-- אזור ראשי -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1 data-i18n="hero_title">לומדים לקודד. <br><span>משחקים כדי להצליח.</span></h1>
+            <p data-i18n="hero_subtitle">חותם חיים מביאה לישראל את CodeCombat - פלטפורמת הלמידה המובילה בעולם המשלבת משחקיות, בינה מלאכותית (YUVAL), ופדגוגיה חדשנית לפיתוח "מיומנות הזהב" של המאה ה-21.</p>
+        </div>
+    </section>
 
-    <div class="nav-grid">
-        <a href="academy.html" class="card academy">
-            <h3 style="color: #4a235a;">אקדמיה והכשרות 🎓</h3>
-            <p>פירמידת הקורסים שלנו, פיתוח כישורים, מחקר, פרויקטים והכשרות מורים.</p>
-        </a>
-        <a href="store.html" class="card store">
-            <h3 style="color: #27ae60;">חנות ציוד טכנופדגוגי 🛒</h3>
-            <p>ציוד מתקדם מכל העולם: סרטונים, יתרונות ומחירים לכל מוצר.</p>
-        </a>
-        <a href="#" class="card services">
-            <h3 style="color: #f39c12;">השירותים שלנו 🛠️</h3>
-            <p>6 תחומי הליבה שבהם חותם חיים מובילה את העשייה החינוכית.</p>
-        </a>
-        <a href="#" class="card impact">
-            <h3 style="color: #2980b9;">20 הישגים גדולים 🏆</h3>
-            <p>הדרך שעברנו, ההשפעה שלנו בשטח ונקודות ציון משמעותיות.</p>
-        </a>
-    </div>
+    <!-- אזור משרד החינוך וגפ"ן -->
+    <section id="gefen" class="gefen-section section-padding">
+        <div class="container text-center">
+            <div class="gefen-icon">🍇</div>
+            <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px;" data-i18n="gefen_title">מאושר משרד החינוך (גפ"ן)</h2>
+            <p style="font-size: 1.2rem; color: #555;" data-i18n="gefen_subtitle">התוכנית שלנו מאושרת בגפ"ן ובמסגרת STEM בתקציב הקשיח 4%. בנוסף התוכנה בעלת אישור של מאגר התוכניות החינוכיות.</p>
+            
+            <div class="gefen-numbers-grid">
+                <div class="gefen-number">46282</div>
+                <div class="gefen-number">46285</div>
+                <div class="gefen-number">46343</div>
+                <div class="gefen-number">46428</div>
+                <div class="gefen-number">46456</div>
+                <div class="gefen-number">47275</div>
+                <div class="gefen-number">7947</div>
+            </div>
+        </div>
+    </section>
 
-    <div class="dummy-content">
-        <!-- אזור גלילה -->
-    </div>
+    <!-- אזור צוות וקשר -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px;" data-i18n="contact_title">הצוות שלנו כאן בשבילכם. דברו איתנו.</h2>
+                <p style="color: #666;" data-i18n="contact_subtitle">ריכוז פרטי ההתקשרות של אנשי המפתח. לחצו על כל מספר כדי ליזום שיחה מיידית.</p>
+            </div>
 
-    <!-- סקריפט להפעלת התפריט בעת גלילה -->
+            <div class="contact-grid">
+                <!-- איש קשר 1 -->
+                <div class="contact-card">
+                    <div>
+                        <div style="font-size: 2rem;">📞</div>
+                        <div class="contact-name" data-i18n="name_rami">רמי חדאד</div>
+                        <div class="contact-role" data-i18n="role_rami">מנכ"ל ובעלים</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:0543100149" class="phone-link" dir="ltr">054-3100149</a>
+                        <a href="https://wa.me/972543100149" target="_blank" title="שלח וואטסאפ">
+                            <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- איש קשר 2 -->
+                <div class="contact-card">
+                    <div>
+                        <div style="font-size: 2rem;">📞</div>
+                        <div class="contact-name" data-i18n="name_leliel">לליאל</div>
+                        <div class="contact-role" data-i18n="role_leliel">הנהלת חשבונות</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:0587187122" class="phone-link" dir="ltr">058-7187122</a>
+                        <a href="https://wa.me/972587187122" target="_blank" title="שלח וואטסאפ">
+                            <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- איש קשר 3 -->
+                <div class="contact-card">
+                    <div>
+                        <div style="font-size: 2rem;">📞</div>
+                        <div class="contact-name" data-i18n="name_david">דוד</div>
+                        <div class="contact-role" data-i18n="role_david">הכשרות מורים</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:0587187144" class="phone-link" dir="ltr">058-7187144</a>
+                        <a href="https://wa.me/972587187144" target="_blank" title="שלח וואטסאפ">
+                            <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- סקריפט התרגום - משנה את הטקסטים לפי בחירת השפה -->
     <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('main-nav');
-            if (window.scrollY > 150) {
-                nav.classList.add('show-nav');
-            } else {
-                nav.classList.remove('show-nav');
+        const translations = {
+            he: {
+                dir: "rtl",
+                nav_home: "ראשי",
+                nav_gefen: "גפ\"ן",
+                nav_contact: "צוות וקשר",
+                nav_academy: "האקדמיה",
+                nav_store: "כניסה לחנות 🛒",
+                hero_title: "לומדים לקודד. <br><span style='color: #F5692B;'>משחקים כדי להצליח.</span>",
+                hero_subtitle: "חותם חיים מביאה לישראל את CodeCombat - פלטפורמת הלמידה המובילה בעולם המשלבת משחקיות, בינה מלאכותית (YUVAL), ופדגוגיה חדשנית.",
+                gefen_title: "מאושר משרד החינוך (גפ\"ן)",
+                gefen_subtitle: "התוכנית שלנו מאושרת בגפ\"ן ובמסגרת STEM בתקציב הקשיח 4%. בנוסף התוכנה בעלת אישור של מאגר התוכניות החינוכיות.",
+                contact_title: "הצוות שלנו כאן בשבילכם.",
+                contact_subtitle: "ריכוז פרטי ההתקשרות של אנשי המפתח. לחצו על כל מספר כדי ליזום שיחה מיידית.",
+                name_rami: "רמי חדאד", role_rami: "מנכ\"ל ובעלים",
+                name_leliel: "לליאל", role_leliel: "הנהלת חשבונות",
+                name_david: "דוד", role_david: "הכשרות מורים"
+            },
+            en: {
+                dir: "ltr",
+                nav_home: "Home",
+                nav_gefen: "Gefen",
+                nav_contact: "Contact Us",
+                nav_academy: "Academy",
+                nav_store: "Go to Store 🛒",
+                hero_title: "Learn to Code. <br><span style='color: #F5692B;'>Play to Succeed.</span>",
+                hero_subtitle: "Chotam Chaim brings CodeCombat to Israel - the world's leading learning platform combining gameplay, AI, and innovative pedagogy.",
+                gefen_title: "Ministry of Education Approved",
+                gefen_subtitle: "Our program is fully approved and budgeted under the STEM framework.",
+                contact_title: "Our team is here for you.",
+                contact_subtitle: "Click any number to initiate a call immediately.",
+                name_rami: "Rami Hadad", role_rami: "CEO & Owner",
+                name_leliel: "Leliel", role_leliel: "Bookkeeping",
+                name_david: "David", role_david: "Teacher Training"
+            },
+            ru: {
+                dir: "ltr",
+                nav_home: "Главная",
+                nav_gefen: "Гефен",
+                nav_contact: "Контакты",
+                nav_academy: "Академия",
+                nav_store: "В магазин 🛒",
+                hero_title: "Учимся кодить. <br><span style='color: #F5692B;'>Играем, чтобы преуспеть.</span>",
+                hero_subtitle: "Chotam Chaim представляет CodeCombat в Израиле — ведущую платформу, сочетающую игры, ИИ и инновационную педагогику.",
+                gefen_title: "Одобрено Министерством",
+                gefen_subtitle: "Наша программа одобрена Министерством просвещения.",
+                contact_title: "Наша команда здесь для вас.",
+                contact_subtitle: "Нажмите на любой номер, чтобы позвонить.",
+                name_rami: "Рами Хадад", role_rami: "Генеральный директор",
+                name_leliel: "Лелиэль", role_leliel: "Бухгалтерия",
+                name_david: "Давид", role_david: "Обучение учителей"
+            },
+            ar: {
+                dir: "rtl",
+                nav_home: "الرئيسية",
+                nav_gefen: "جيفن",
+                nav_contact: "اتصل بنا",
+                nav_academy: "الأكاديمية",
+                nav_store: "المتجر 🛒",
+                hero_title: "نتعلم البرمجة. <br><span style='color: #F5692B;'>نلعب لننجح.</span>",
+                hero_subtitle: "تجلب حوتام حاييم منصة CodeCombat إلى إسرائيل - منصة التعلم الرائدة عالمياً.",
+                gefen_title: "معتمد من وزارة التربية والتعليم",
+                gefen_subtitle: "برنامجنا معتمد بالكامل ضمن إطار STEM.",
+                contact_title: "فريقنا هنا من أجلك.",
+                contact_subtitle: "انقر فوق أي رقم لبدء مكالمة على الفور.",
+                name_rami: "رامي حداد", role_rami: "الرئيس التنفيذي",
+                name_leliel: "ليلييل", role_leliel: "مسك الدفاتر",
+                name_david: "ديفيد", role_david: "تدريب المعلمين"
             }
-        });
-    </script>
+        };
 
+        function changeLanguage(langCode) {
+            const langData = translations[langCode];
+            if (!langData) return;
+
+            // שינוי כיוון הטקסט (מימין לשמאל או משמאל לימין)
+            document.documentElement.dir = langData.dir;
+            document.documentElement.lang = langCode;
+
+            // עדכון כל הטקסטים שיש להם את המאפיין data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (langData[key]) {
+                    element.innerHTML = langData[key];
+                }
+            });
+        }
+    </script>
 </body>
 </html>
